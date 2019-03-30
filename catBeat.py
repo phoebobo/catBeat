@@ -13,13 +13,20 @@ bright_red = (255,0,0)
 bright_green = (0,255,0)
 blue = (0,0,255)
 
-def startGame():
+cat_beat = ['./cat_beat1.jpg','./cat_beat2.jpg','./cat_beat2.jpg']
+beat_text = ['']
+
+def startGame():  #去除开始的几个事件，
     textRectObj.top = -400
     cat_rect.top = -400
     startBtn.rect.top = -400
 
+    #猫图
+    catBeatRect.top = 0
+
+
 if __name__ == '__main__':
-    pygame.init()
+    pygame.init()  #初始化
     pygame.mixer.init()
 
     screen = pygame.display.set_mode((400,500))
@@ -39,6 +46,14 @@ if __name__ == '__main__':
     cat_image = pygame.image.load('./cat_head.png')
     cat_rect = cat_image.get_rect()
     cat_rect.center = screen.get_rect().center
+    #刚开始隐藏的猫图
+    catBeatImg = pygame.image.load(cat_beat[0])
+    catBeatRect = catBeatImg.get_rect()
+    catBeatRect.top = -500
+    catBeatRect.left = 0
+    #刚开始隐藏的下文字框
+    beatObj = pygame.font.SysFont('方正兰亭超细黑简体',30)
+    beatText = beatObj.render('')
 
     pygame.display.flip()
 
@@ -58,5 +73,5 @@ if __name__ == '__main__':
                 # 做需要做的事情，如开始游戏。
                 startGame()
 
-
+        screen.blit(catBeatImg,catBeatRect)
         pygame.display.flip()
